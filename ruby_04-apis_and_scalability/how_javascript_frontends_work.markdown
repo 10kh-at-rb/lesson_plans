@@ -37,8 +37,21 @@ status: draft
 * Backbone introduced the idea of the separated your data from the DOM. It relies on events to trigger changes in a sane and sensible way. Backbone is incredibly lightweight and flexible—a lot like Sinatra.
 * Angular self-describes as a framework for building frameworks. It popularized two-way data-bindings.
 * Ember evolved out of Sproutcore and takes inspiration from Cocoa and Rails—as well as Angular and Backbone.
+* React focuses on the view layer exclusively and uses something called the Virtual DOM and an algorithm to do the fastest possible updates.
+
+### Some of the Advantages
+
+- Fast response time once loaded
+- Long-lived application
+
+### Some of the Problems Front-End Frameworks Must Solve
+
+- Initial load time
+- Routing and getting the back button working
+- Data modelling
 
 ## Wrap Up
 
 1. Of the examples we shared during the warm-up, which pages could have been better solved using a framework?
 2. If you've tried your hand at a framework in the past, did you really need it? Why or why not?
+

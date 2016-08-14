@@ -144,7 +144,7 @@ var server = http.createServer(app)
 
 Finally, we'll export our server so we can access it later on.
 
-Recall that within NPM's module system, each module can
+Recall that within npm's module system, each module can
 export a single value which will form its "public" interface.
 
 Other modules which require this module will then be able to
@@ -156,7 +156,7 @@ the module.
 module.exports = server;
 ```
 
-When all is said and done, you're server should look something
+When all is said and done, your server should look something
 like this:
 
 ```js
@@ -197,16 +197,14 @@ Socket.io takes an existing http server (like the one
 we created using `http.createServer`) and uses it to host
 websocket connections.
 
-We can set it up like this:
+We can set it up like this, below where we define the variable server:
 
 ```js
 // server.js
+// var server = ...
 const socketIo = require('socket.io');
 const io = socketIo(server);
 ```
-
-(remember that we installed socket.io using `npm` in a previous
-step, hence it is available to us now)
 
 Our server now supports WebSockets! Woohoo!
 
@@ -223,7 +221,7 @@ working, so now let's head over and configure the portion
 for the browser.
 
 Socket.io adds a route to our server with its client-side
-library. If you visit
+library. Restart your server.  If you visit
 `http://localhost:3000/socket.io/socket.io.js`
 you can see the source for the client-side library and
 verify that everything is wired up correctly.
@@ -259,7 +257,7 @@ We have to initiate a WebSocket connection from the client. Let's establish a co
 var socket = io();
 ```
 
-That's it. We have create a WebSocket connection between the browser and Node. Right now, this is a pretty pointless server.
+That's it. We have created a WebSocket connection between the browser and Node. Right now, this is a pretty pointless server.
 
 Node uses an event driven model, which behaves much like mouse clicks and other user actions in the browser. When you initiated your WebSocket connection between the client and the server, a `connection` event was fired from the `io` object on the server.
 
@@ -485,7 +483,7 @@ socket.on('disconnect', function () {
   console.log('A user has disconnected.', io.engine.clientsCount);
   delete votes[socket.id];
   console.log(votes);
-  io.sockets.emit('userConnection', io.engine.clientsCount);
+  io.sockets.emit('usersConnected', io.engine.clientsCount);
 });
 ```
 
@@ -506,7 +504,7 @@ var voteCount = {
     C: 0,
     D: 0
 };
-  for (vote in votes) {
+  for (var vote in votes) {
     voteCount[votes[vote]]++
   }
   return voteCount;
@@ -577,8 +575,68 @@ With the following Procfile, can you deploy you application to Heroku?
 web: node server.js
 ```
 
-Please add the link to your deployed application and repository by noon.
+### Testing
+
+Can you get mocha tests up and running?
 
 ```
-https://etherpad.mozilla.org/web-sockets-1503
+mkdir test
+touch test/test.js
 ```
+
+Now let's install our dependencies.
+
+```
+  npm install mocha chai --save-dev
+```
+
+Now, open the `package.json` file in the route directory and make sure within `scripts` and `test` that you point `npm` to use mocha:
+
+```
+//package.json
+"scripts": {
+  "test": "mocha",
+  "start": "node server.js"
+},
+```
+
+##### Extensions: Supertest for Request Testing
+
+[Supertest](https://github.com/visionmedia/supertest) is a library for testing node.js HTTP servers.
+
+```
+  npm install supertest --save-dev
+```
+
+You can then write request tests like:
+
+```js
+var expect = require('chai').expect;
+var request = require('supertest');
+
+var app = require('../server');
+
+describe('GET /', function(){
+  it('responds with success', function(done){
+    request(app)
+      .get('/')
+      .expect(200, done);
+  });
+});
+
+describe('undefined routes', function(){
+  it('respond with a 404', function(done){
+    request(app)
+      .get('/not-real')
+      .expect(404, done);
+  });
+});
+```
+##### Extensions: Mocking and Testing WebSockets
+
+[Socket.IO Client](https://github.com/socketio/socket.io-client)
+
+Some blogs/resources:
+- [Testing SocketIO](http://liamkaufman.com/blog/2012/01/28/testing-socketio-with-mocha-should-and-socketio-client/)
+- [Testing Socketio Apps](https://dzone.com/articles/testing-socketio-apps)
+- [An Example on Github](https://github.com/liamks/Testing-Socket.IO)

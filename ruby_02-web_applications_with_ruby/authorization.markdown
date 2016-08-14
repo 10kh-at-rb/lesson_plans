@@ -41,18 +41,6 @@ Let's start by refactoring. We'll add login and logout links in application.html
 We'll also quickly add a few flash messages in the sessions controller and users controller so that you can see how the content tag is dynamic:
 
 ```ruby
-# sessions controller
-  def create
-    @user = User.find_by(username: params[:session][:username])
-    if @user && @user.authenticate(params[:session][:password])
-      session[:user_id] = @user.id
-      redirect_to @user
-    else
-      flash.now[:errors] = "Invalid login"
-      render :new
-    end
-  end
-
 # users controller
 
   def create
@@ -61,7 +49,7 @@ We'll also quickly add a few flash messages in the sessions controller and users
       session[:user_id] = @user.id
       redirect_to @user # user_path(@user)
     else
-      flash.now[:errors] = @user.errors.full_messages.join(", ")
+      flash.now[:error] = @user.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -74,7 +62,7 @@ We'll also quickly add a few flash messages in the sessions controller and users
                        uniqueness: true
 ```
 
-* Ok. Let's start with a test for admin functionality. Let's assume that there are categories in this application, and only an admin should be able to access the category index.
+* Ok. Let's start with a test for admin functionality. Our client has asked for categories in this application, and only an admin should be able to access the category index. Let's start with a test.
 
 ```
 $ touch test/integration/admin_categories_test.rb
@@ -232,5 +220,16 @@ $ touch app/views/admin/categories/index.html.erb
 ```
 
 ## Work Time
+
+### User: 
+* can view index and show page for tools that belong to self
+* cannot update users besides self
+* cannot create see or update other users tools
+
+
+### Admin: 
+* can create, update, read, and delete tools
+* cannot update users besides self
+* can CRUD categories
 
 ## Other Resources:

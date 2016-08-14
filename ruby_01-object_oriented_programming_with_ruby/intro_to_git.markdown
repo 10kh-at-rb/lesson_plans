@@ -4,7 +4,13 @@ length: 180
 tags: git, github
 ---
 
+## Prework -- Assign to Students the Night Before
+
+Set up your ssh keys on github according to [these instructions](https://help.github.com/articles/generating-ssh-keys/)
+
 ## Standards
+
+After this lesson, students should be able to:
 
 #### Git
 
@@ -40,17 +46,63 @@ tags: git, github
 
 * Version control system
 * Provides "multiple save points"
+* Solving the problem of `some_docV1.doc`, `some_docV2.doc`, `some_docFinal.doc`, `some_docREALLYFINAL.doc`, etc.
+* Specifically: **Distributed** Version Control System
+* Contrasts with traditional centralized VCS (journalism, architecture, engineering)
 
-### How is Git Configured on My Computer?
+### Git Commits
 
-* `git config --global user.email "you@example.com"`
-* `git config --global user.name "Your Name"`
+* Git's philosophy: never lose anything
+* Use "commits" to create a replayable log of all changes made to the repository over time
+* Commits: Track **changes** to **lines of files**
+* Behind the scenes: If we move around in our git history, git
+will use the contents of commits (additions or deletions of lines) to update the contents
+of our files
 
-Dotfiles:
-* .gitconfig
-* .bash_profile
+### Contents of a Commit
 
-Don't have dotfiles? Check out Turing's [Bootstrapping New Students](https://github.com/turingschool/bootstrap_new_students) repository.
+* Author (who)
+* Date (when)
+* Message (why)
+* Contents (what)
+* Parent Hash (where)
+* __Hash__ -- Auto-generated fingerprint tagging the contents of the commit -- uniquely id's the commit
+
+### Building Git's History from Commits
+
+* **Branches** -- Git actually allows us to have multiple histories, each on its own *branch*;
+by default git creates a standard branch called *master*
+* *head* -- The "tip" of a branch -- i.e. what's the latest commit on a given branch
+* **HEAD** -- Where am I now? Specifically which *head* am I working on, so which commit on which
+branch.
+* HEAD lets git know what view of the repository
+* Adding commits -- Creates a new commit and moves HEAD
+
+### Git Concepts -- Working Directory and Staging Area
+
+* Working Directory: Current view of our files; working directory is what we see, as
+opposed to the various changes and alternative views git stores in its history
+* Staging Area: place to put changes (remember, changes are to lines in files) before we
+commit them
+* History -- i.e. Commits: Where changes go once they are committed. Move from staging
+area to a commit
+
+### Git Conceptual Arts & Crafts Demo
+
+Instructor should demonstrate going through a basic git flow using a hypothetical repo.
+Students should follow along using Wiki Stix and Index Cards to represent commits and the connections between them.
+
+* Make a directory
+* Init a git repository
+* Make a file
+* Add changes to file
+* Stage changes
+* Commit changes
+* Repeat x 2-3
+* Create a branch (moving HEAD)
+* Repeat changes / Commits
+* Checkout master (moving HEAD)
+* Merging branch (moving HEAD)
 
 ## A Basic Git Workflow
 
@@ -64,7 +116,15 @@ simple and straightforward workflow:
 4. "Commit" your changes using `git commit`
 5. Repeat steps 2-5 until done
 
-## Basic Workflow in Practice
+### How is Git Configured on My Computer?
+
+* Git stores a special configuration file at `~/.gitconfig`
+* You can put a ton of options here but for now we just care about basics
+* `git config --global user.email "you@example.com"`
+* `git config --global user.name "Your Name"`
+* You can also double check what values are currently set by running `git config -l` at the command line
+
+### Basic Workflow in Practice
 
 Let's go through a more concrete example all together.
 
@@ -72,8 +132,7 @@ First, create and navigate into an empty directory to simulate a new project
 we might be working on:
 
 ```
-mkdir intro_git
-cd intro_git
+mkdir intro_git && cd intro_git
 ```
 
 Next, let's create an empty file to simulate some code changes we

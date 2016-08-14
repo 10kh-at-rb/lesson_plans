@@ -1,6 +1,6 @@
 ---
 title: Introduction to jQuery
-length: 90
+length: 60
 tags: jquery, javascript
 ---
 
@@ -99,10 +99,19 @@ See more event methods in the [jQuery event documentation](http://api.jquery.com
 * $("selector").fadeToggle(1000)
 * $("selector").slideToggle(1000)
 * $("selector").css('property', value)
-* $('#target').animate({  
+* $('selector').animate({  
 		    opacity: 0.25,  
 		    left: "+=500",  
 		  }, 3000);
+* $( "selector" ).click(function() {
+	  $( "selector" ).animate({
+	    width: "70%",
+	    opacity: 0.4,
+	    marginLeft: "0.6in",
+	    fontSize: "3em",
+	    borderWidth: "10px"
+	  }, 1000 );
+	});
 
 #### Let's take a trip to the jQuery playground!
 

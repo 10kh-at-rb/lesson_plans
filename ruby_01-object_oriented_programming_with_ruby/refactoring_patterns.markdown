@@ -1,33 +1,27 @@
 ---
 title: Refactoring Patterns
-length: 180
+length: 120
 tags: ruby, refactoring, tdd
 ---
 
 ## Learning Goals
 
-* Understand how refactoring fits into the RED-GREEN-REFACTOR cycle
-* Know the difference between refactoring and "changing shit"
-* Be able to apply the Move Method refactoring pattern
-* Be able to apply the Extract Class refactoring pattern
-* Be able to apply the Hide Delegate refactoring pattern
+* explain how refactoring fits into the RED-GREEN-REFACTOR cycle
+* identify the difference between refactoring and "changing shit"
+* define and apply the Move Method refactoring pattern
+* define and apply the Extract Class refactoring pattern
+* define and apply the Hide Delegate refactoring pattern
 
 ## Structure
 
 * 5 - Warmup
-* 20 - Lecture
+* 15 - Key Points
 * 5 - Break
-* 10 - Lecture Wrapup
-* 15 - Start First Refactoring Exercise (Individual)
+* 20 - First Refactoring Station (Groups)
+* 20 - Second Refactoring Station (Groups)
 * 5 - Break
-* 25 - Finish First Refactoring Exercise (Individual)
-* 5 - Break
-* 25 - Start Second Refactoring Exercise (Paired)
-* 5 - Break
-* 25 - Continue Second Refactoring Exercise (Paired)
-* 5 - Break
-* 25 - Finish Second Refactoring Exercise (Paired)
-* 5 - Wrapup
+* 20 - Third Refactoring Station (Groups)
+* 10 - Wrap Up and transition into Enigma Exercises
 
 ## Warmup
 
@@ -35,9 +29,7 @@ Attempt to answer these five questions:
 
 1. Why do we refactor?
 2. What's the difference between "refactoring" and "changing shit"?
-3. What role do patterns play in refactoring?
-4. Why do some refactoring patterns seem to be opposites?
-5. Does refactoring always make code better?
+3. Does refactoring always make code better?
 
 ## Lecture
 
@@ -56,46 +48,22 @@ Let's start by discussing Refactoring at a high level:
 * Jay Fields revised Fowler's book for Ruby:
 [Refactoring: Ruby Edition](http://www.amazon.com/Refactoring-Edition-Addison-Wesley-Professional-Series/dp/0321984137)
 
-## Stations and Exercises
+## Refactoring Pattern Stations
 
 For the remaining three segments students will disburse and work through three
-separate station exercises.
+separate station exercises in small groups. 
 
 * [Station 1](https://github.com/turingschool/lesson_plans/blob/master/ruby_01-object_oriented_programming_with_ruby/refactoring_patterns_station_1.markdown)
 * [Station 2](https://github.com/turingschool/lesson_plans/blob/master/ruby_01-object_oriented_programming_with_ruby/refactoring_patterns_station_2.markdown)
 * [Station 3](https://github.com/turingschool/lesson_plans/blob/master/ruby_01-object_oriented_programming_with_ruby/refactoring_patterns_station_3.markdown)
 
-After an initial recap of the material from each station, we'll get some
-practice with refactoring by applying the concepts described to these
-2 enigma projects.
+## Follow Up: Enigma Refactoring Exercises
 
-Spend __1 hour__ working on the first project by yourself,
-then join a pair and work on the second project for __1 hour__.
-
-The projects can be found here:
+Students should join a pair to work on applying these techniques to a sample Enigma project:
 
 * [Enigma Refactoring Exercises](https://github.com/turingschool-examples/enigma_refactoring_exercises)
-
-## Wrapup
-
-Return to your answers from the warmup. Can you improve them now?
 
 ## Follow Up
 
 * Tonight you should watch [Katrina's Therapeutic Refactoring talk](http://confreaks.tv/videos/cascadiaruby2012-therapeutic-refactoring).
 * The readings we used today can be [found here](https://dl.dropboxusercontent.com/u/69001/Refactoring/Refactoring%20-%20Chapter%207.pdf).
-
-### Notes
-
-* Make reading a homework assignment for the night before
-* Shorten centers length (since they won't have to read during that time)
-* Try the same stations / rotation with a more sophisticated example --
-probably an old enigma with some intentional obfuscations
-* Try initial exercises individually
-* Then get with a pair
-* Then do a second pass for the following "pairing exercise"
-on another codebase
-* Second pass should require them to write tests first
-before their refactoring
-* Project for second pass should have low test coverage or
-possibly some tests intentionally removed
